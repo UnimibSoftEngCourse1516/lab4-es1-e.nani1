@@ -35,6 +35,7 @@ import org.apache.mahout.math.map.OpenIntLongHashMap;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.lang.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -135,11 +136,11 @@ public final class AggregateAndRecommendReducer extends
 
       if (numerators == null) {
         numerators = simColumn.clone();
-        if (prefValue != BOOLEAN_PREF_VALUE) {
+        if (Float.compare(prefValue, BOOLEAN_PREF_VALUE) != 0) {
           numerators.assign(Functions.MULT, prefValue);
         }
       } else {
-        if (prefValue != BOOLEAN_PREF_VALUE) {
+        if (Float.compare(prefValue, BOOLEAN_PREF_VALUE) != 0) {
           simColumn.assign(Functions.MULT, prefValue);
         }
         numerators.assign(simColumn, Functions.PLUS);
