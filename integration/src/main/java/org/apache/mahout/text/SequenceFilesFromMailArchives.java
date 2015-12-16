@@ -353,7 +353,7 @@ public final class SequenceFilesFromMailArchives extends AbstractJob {
     String inputDirList = HadoopUtil.buildDirList(fs, fsFileStatus);
     FileInputFormat.setInputPaths(job, inputDirList);
 
-    long chunkSizeInBytes = chunkSize * 1024 * 1024;
+    long chunkSizeInBytes = (long)chunkSize * 1024 * 1024;
     // need to set this to a multiple of the block size, or no split happens
     FileInputFormat.setMaxInputSplitSize(job, chunkSizeInBytes);
 
